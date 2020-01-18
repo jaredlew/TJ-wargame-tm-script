@@ -29,13 +29,33 @@ function detectQWER(event) {
         //alert(weapon_sel[0]);
     }
     //alert($('#'+weapon_sel.id)[0].value);
-    
+
+    //判断select中是否存在value
+function isExistOption(value) {
+    var isExist = false;
+
+      for(var i=0;i<weapon_sel.length;i++)
+      {
+         if(weapon_sel.options[i].value == value)
+             {
+                   isExist = true;
+                        break;
+                  }
+        }
+        return isExist;
+}
+
     var e = event || window.event;
-    if(e && e.keyCode==81){ // 按 q
+    if(e && e.keyCode==81){ // 按 q 选择蓝军装||红军装甲车（车载轻武器43），蓝军||红军步兵小队（步兵轻武器29），蓝军||红军坦克（车载轻武器43），红军直升机（车载轻武器43），红军无人战车（车载轻武器43），
         //要做的事情
-        weapon_sel.value='0';
+        if (isExistOption(43)) {
+            weapon_sel.value='43';
+        }
+        else if (isExistOption(29)) {
+            weapon_sel.value='29';
+        }
     }
-    if(e && e.keyCode==87){ // 按 w
+    if(e && e.keyCode==87){ // 按 w 选择
         weapon_sel.value='43';
         //alert("按 w");
     }
@@ -54,4 +74,5 @@ function detectQWER(event) {
 2.展开武器选择控件，设置按键交互效果；
 3.移动步数显示，加速移动速度；
 4.优化地图移动方式和顺畅度；
+5.小地图长亮显示，标记夺控点；
 */
