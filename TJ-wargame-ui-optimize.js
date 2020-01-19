@@ -27,10 +27,10 @@
 
 function detectQWER(event)
 {
-var weapons = document.querySelector('div.sel');
+var weapon = document.querySelector('div.sel');
 
-if (weapons){
-var weapon_sel=document.getElementById('Weapon_'+weapons.id);
+if (weapon){
+var weapon_sel=document.getElementById('Weapon_'+weapon.id);
 //alert(weapon_sel[0]);
 }
 //alert($('#'+weapon_sel.id)[1].value);
@@ -48,7 +48,7 @@ for(var i=0;i<weapon_sel.length;i++)
 }
 
 weaponlist.sort();
-
+//alert(weaponlist);
 var e = event || window.event;
 if(e && e.keyCode==81){ // 按 q
 
@@ -75,12 +75,54 @@ weapon_sel.value=String(weaponlist[3]);
 //alert("按 r");
 
 }
-if(e && e.keyCode==68){ // 按 d
+//if(e && e.keyCode==68){ // 按 d
+    //var weapon_stat=document.getElementById('ObjPass');}
 
-weapon_sel.value=String(weaponlist[4]);
-//alert("按 d");
+
+//1234键改变状态
+if(e && e.keyCode==49){ // 按 1
+$('#ObjPass').val('0').change();//这样才能调用onchange的函数
 
 }
+if(e && e.keyCode==50){ // 按2
+$('#ObjPass').val('1').change();
+
+}
+if(e && e.keyCode==51){ // 按 3
+$('#ObjPass').val('2').change();
+
+}
+if(e && e.keyCode==52){ // 按4
+
+$('#ObjPass').val('3').change();//这里有一个bug：选择引导后键盘控制失效，需要重新选择'机动'才能恢复。
+
+}
+
+//tab键切换单位
+if(e && e.keyCode==9){ // 按 tab
+
+    var pos = weapon.getAttribute('pos');//当前选中单位的pos值
+    var weapons=document.querySelectorAll('div.my');//我拥有的所有单位  nodelist  getElementsByClassName
+    var weapons_array = new Array();
+    //alert(weapons.length);
+    for(i = 0;i<weapons.length;i++)
+    {
+        //alert(weapons[i].getAttribute('pos'));
+        if(weapons[i].getAttribute('pos')==pos)
+        {
+
+             weapons_array.push(weapons[i]);//weapons_array只保留同格的单位
+        }
+    }
+    //alert(document.getElementById(weapons_array[0].id).className);
+    //document.getElementById(weapons_array[0].id).className=document.getElementById(weapons_array[0].id).className.split(' sel')[0];
+    //alert(document.getElementById(weapons_array[0].id).className);
+    //document.getElementById(weapons_array[1].id).className=document.getElementById(weapons_array[1].id).className+' sel';
+    //document.getElementById('ObjSel').click();
+    //showmenuie5('&#39;'+weapons_array[1].id+'&#39;')  //观察网页源码，发现需要调用hit和showmenuie5两个函数
+
+}
+
 
 }
 
