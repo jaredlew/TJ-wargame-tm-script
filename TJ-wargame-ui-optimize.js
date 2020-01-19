@@ -118,8 +118,9 @@ if(e && e.keyCode==9){ // 按 tab
     //document.getElementById(weapons_array[0].id).className=document.getElementById(weapons_array[0].id).className.split(' sel')[0];
     //alert(document.getElementById(weapons_array[0].id).className);
     //document.getElementById(weapons_array[1].id).className=document.getElementById(weapons_array[1].id).className+' sel';
-    //document.getElementById('ObjSel').click();
-    //showmenuie5('&#39;'+weapons_array[1].id+'&#39;')  //观察网页源码，发现需要调用hit和showmenuie5两个函数
+    //alert(document.getElementById('ObjSel').children[0]);
+    document.getElementById('ObjSel').children[0].click(weapons_array[1].id);
+    document.getElementById('ObjSel').children[0].contextmenu(weapons_array[1].id); //观察网页源码，发现需要调用hit和showmenuie5两个函数
 
 }
 
