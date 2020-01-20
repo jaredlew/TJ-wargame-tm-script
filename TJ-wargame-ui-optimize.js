@@ -17,15 +17,11 @@
 
     //var citymoney = document.getElementById('CityMoney');
     //alert(citymoney);
-    document.onkeydown = detectQWER;//实现了键盘监控结果把移动界面给覆盖了，移动界面可以选择别的方式（大地图，鼠标中键）
-
-
-
+    document.onkeydown = detectQWER; //实现了键盘监控结果把移动界面给覆盖了，移动界面可以选择别的方式（大地图，鼠标中键）
 })();
 
 
-
-function detectQWER(event) {
+(function detectQWER(event) {
     var weapon = document.querySelector('div.sel');
 
     if (weapon) {
@@ -41,7 +37,8 @@ function detectQWER(event) {
             weaponlist.push(parseInt(weapon_sel.options[i].value));
         }
     }
-    weaponlist.sort(); //alert(weaponlist);
+
+    weaponlist.sort();
     var e = event || window.event;
 
     if(e && e.keyCode==81){ // 按 q
@@ -67,8 +64,7 @@ function detectQWER(event) {
     //if(e && e.keyCode==68){ // 按 d
         //var weapon_stat=document.getElementById('ObjPass');}
 
-
-        //1234键改变状态
+    //1234键改变状态
 
     if(e && e.keyCode==49){ // 按 1
         $('#ObjPass').val('0').change();//这样才能调用onchange的函数
@@ -91,9 +87,7 @@ function detectQWER(event) {
         var pos = weapon.getAttribute('pos');//当前选中单位的pos值
         var weapons=document.querySelectorAll('div.my');//我拥有的所有单位  nodelist  getElementsByClassName
         var weapons_array = new Array();
-        //alert(weapons.length);
         for(i = 0;i<weapons.length;i++) {
-            //alert(weapons[i].getAttribute('pos'));
             if(weapons[i].getAttribute('pos')==pos) {
                 weapons_array.push(weapons[i]);//weapons_array只保留同格的单位
             }
@@ -103,7 +97,20 @@ function detectQWER(event) {
     //alert(document.getElementById(weapons_array[0].id).className);
     //document.getElementById(weapons_array[1].id).className=document.getElementById(weapons_array[1].id).className+' sel';
     //alert(document.getElementById('ObjSel').children[0]);
-    document.getElementById('ObjSel').children[0].click(weapons_array[1].id);
-    document.getElementById('ObjSel').children[0].contextmenu(weapons_array[1].id); //观察网页源码，发现需要调用hit和showmenuie5两个函数
-}
-}
+
+        for(i = 0;i<weapons_array.length;i++) {
+            if(weapon.id==weapons_array[i].id)
+            {
+                break;
+            }
+        }//找到现在的单位是哪个
+        document.getElementById('ObjSel').children[(i+1)%weapons_array.length].click();//weapons_array[(i+1)%weapons_array.length].id);
+        document.getElementById('ObjSel').children[(i+1)%weapons_array.length].contextmenu(); //观察网页源码，发现需要调用hit和showmenuie5两个函数
+    }
+})();
+
+//README:
+//bugs：
+//    1.实现了键盘监控结果把移动界面给覆盖了，移动界面可以选择别的方式（大地图，鼠标中键）
+//    2.对步兵按数字键4选择引导后，键盘控制失效，需要鼠标重新选择'机动'才能恢复。
+//    3.按tab键会使焦点到浏览器其他地方导致切换单位失效，需要多按几次
