@@ -18,11 +18,7 @@
     //var citymoney = document.getElementById('CityMoney');
     //alert(citymoney);
     document.onkeydown = detectQWER;//实现了键盘监控结果把移动界面给覆盖了，移动界面可以选择别的方式（大地图，鼠标中键）
-
-
-
 })();
-
 
 
 function detectQWER(event) {
@@ -41,6 +37,7 @@ function detectQWER(event) {
             weaponlist.push(parseInt(weapon_sel.options[i].value));
         }
     }
+
     weaponlist.sort();
     var e = event || window.event;
 
@@ -68,6 +65,7 @@ function detectQWER(event) {
         //var weapon_stat=document.getElementById('ObjPass');}
 
     //1234键改变状态
+
     if(e && e.keyCode==49){ // 按 1
         $('#ObjPass').val('0').change();//这样才能调用onchange的函数
     }
