@@ -2,8 +2,8 @@
 // @name         铁甲突击改进脚本
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  try to take over the world!
-// @author       You
+// @description  铁甲突击兵棋游戏优化脚本
+// @author       Jared,Xunway
 // @match        http://154.8.228.108/*/main.html
 // @grant        none
 // ==/UserScript==
